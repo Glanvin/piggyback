@@ -1,0 +1,1 @@
+$execute unless score @s piggyback.id = $(carrier) run ride @a[scores={piggyback.id=$(carrier)},limit=1] mount @e[type=minecraft:armor_stand,tag=piggyback.seat,scores={piggyback.id=$(clicker)},limit=1]
