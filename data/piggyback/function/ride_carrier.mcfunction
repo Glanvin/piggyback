@@ -1,1 +1,3 @@
-$execute unless score @s piggyback.id = $(carrier) run ride @s mount @e[type=minecraft:armor_stand,tag=piggyback.seat,scores={piggyback.id=$(carrier)},limit=1]
+execute if entity @s[vehicle] run tellraw @a[tag=piggyback.debug] [{"text":"[PIGGYBACK DEBUG] Ride blocked - already riding"}] && return 0
+$execute unless score @s piggyback.id = $(carrier) if entity @e[type=minecraft:armor_stand,tag=piggyback.seat,scores={piggyback.id=$(carrier)}] run ride @s mount @e[type=minecraft:armor_stand,tag=piggyback.seat,scores={piggyback.id=$(carrier)},limit=1] && tellraw @a[tag=piggyback.debug] [{"text":"[PIGGYBACK DEBUG] Ride mounted successfully"}]
+$execute unless score @s piggyback.id = $(carrier) unless entity @e[type=minecraft:armor_stand,tag=piggyback.seat,scores={piggyback.id=$(carrier)}] run tellraw @a[tag=piggyback.debug] [{"text":"[PIGGYBACK DEBUG] Ride failed - seat not found for carrier"}]
